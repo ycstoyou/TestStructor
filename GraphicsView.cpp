@@ -112,7 +112,8 @@ void GraphicsView::mouseDoubleClickEvent(QMouseEvent* event)
 bool GraphicsView::eventFilter(QObject* watched, QEvent* event)
 {
 	
-	/*if (event->type() == QEvent::KeyPress)
+/*
+	if (event->type() == QEvent::KeyPress)
 	{
 		qDebug() << "Event filter for ";
 		

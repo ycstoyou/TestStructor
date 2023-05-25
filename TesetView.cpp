@@ -50,13 +50,12 @@ bool MousePressFilter::eventFilter(QObject* obj, QEvent* event)
 			qDebug("mouse filter left click");
 		}
 		//QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
-		
-		return true;
-	}
-	else {
+
+
 		// standard event processing
 		return QObject::eventFilter(obj, event);
 	}
+	return QObject::eventFilter(obj, event);
 }
 
 TesetView::TesetView(QWidget *parent)
@@ -71,7 +70,7 @@ TesetView::TesetView(QWidget *parent)
 	KeyPressEater* keyPressEater = new KeyPressEater();
 	MousePressFilter* mouse_filter = new MousePressFilter();
 	mouse_filter->view_ = &main_graphices_view_;
-	draw_button->installEventFilter(keyPressEater);
+	//draw_button->installEventFilter(keyPressEater);
 	draw_button->installEventFilter(mouse_filter);
 
 
@@ -119,7 +118,7 @@ void TesetView::InitView()
 	right_layout->addWidget(&main_graphices_view_);
 	
 
-	//connect(&main_graphices_view_, &GraphicsView::, this, &TesetView::slotViewDoubleClick);
+	
 
 	setLayout(main_layout);
 }
@@ -147,6 +146,7 @@ void TesetView::UpdateDrawButton()
 	else {
 		qDebug() << "check false";
 		main_graphices_view_.SetDraw(false);
+		draw_button->setChecked(false);
 	}
 	
 
@@ -164,7 +164,7 @@ bool TesetView::eventFilter(QObject* watched, QEvent* event)
 	{
 		qDebug() << "graphics filter";
 		qDebug() << event->type();
-		if (event->type() == QEvent::MouseButtonDblClick)
+		if (event->type() == QEvent::MouseButtonDblCliwck)
 		{
 			qDebug() << "checked tsetview event filter";
 			
